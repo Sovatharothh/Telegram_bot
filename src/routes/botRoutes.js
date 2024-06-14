@@ -1,32 +1,32 @@
-const { handleDocumentUpload, getTotalPeopleToday, getListOfPeopleToday, getTimesToday } = require('../controllers/botControllers');
-const moment = require('moment');
-const fetch = require('node-fetch');
 const { Telegraf } = require('telegraf');
-const fs = require('fs');
-const config = require('../config');
+const fetch = require('node-fetch');
+const { handleDocumentUpload, getTotalPeopleToday, getListOfPeopleToday, getTimesToday } = require('../controllers/botControllers');
+require('dotenv').config();
 
-const { BOT_TOKEN, AUTHORIZED_CHAT_IDS, ADMIN_CHAT_ID } = config;
-const bot = new Telegraf(BOT_TOKEN);
+const botToken = process.env.BOT_TOKEN;
+const authorizedChatIds = JSON.parse(process.env.AUTHORIZED_CHAT_IDS || '[]'); // Parse as JSON array
 
-// Convert AUTHORIZED_CHAT_IDS to a Set
-let authorizedChatIds = new Set(AUTHORIZED_CHAT_IDS);
+const bot = new Telegraf(botToken);
+
+let authorizedChatIdsSet = new Set(authorizedChatIds);
 
 bot.start((ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    console.log('Incoming chat ID:', ctx.chat.id.toString());
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     ctx.reply('Welcome 🥺🫶🏻');
 });
 
 bot.help((ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     ctx.reply('Available commands:\n/document - Upload a CSV file\n/total - Total number of people in office\n/list - List of people in office\n/times - Time in and time out\n/stop - Stop the bot');
 });
 
 bot.on('document', async (ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     try {
@@ -49,7 +49,7 @@ bot.on('document', async (ctx) => {
 });
 
 bot.command('total', async (ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     try {
@@ -62,7 +62,7 @@ bot.command('total', async (ctx) => {
 });
 
 bot.command('list', async (ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     try {
@@ -75,7 +75,7 @@ bot.command('list', async (ctx) => {
 });
 
 bot.command('times', async (ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     try {
@@ -88,7 +88,7 @@ bot.command('times', async (ctx) => {
 });
 
 bot.command('stop', (ctx) => {
-    if (!authorizedChatIds.has(ctx.chat.id.toString())) {
+    if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('Unauthorized access. Please contact the admin.');
     }
     ctx.reply('Thanks for using our ChatBot TT');

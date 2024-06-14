@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 module.exports = {
-    BOT_TOKEN: '7495276063:AAEs2l5gSeIJGsyYIDcNtOwxOnblbu1Y2qo', 
-    AUTHORIZED_CHAT_IDS: ['999135220', '952971395'],
-    ADMIN_CHAT_ID: '952971395',
+    botToken: process.env.BOT_TOKEN,
+    authorizedChatIds: JSON.parse(process.env.AUTHORIZED_CHAT_IDS),
+    adminChatId: process.env.ADMIN_CHAT_ID
 };
