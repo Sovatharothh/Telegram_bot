@@ -7,7 +7,7 @@ const analyzeData = (dataArray) => {
     // Group scans by date and name
     const groupedData = {};
     dataArray.forEach(row => {
-        const formattedDate = moment(row.DATE, 'D/M/YYYY').format('YYYY-MM-DD');
+        const formattedDate = moment(row.DATE, 'M/D/YYYY').format('YYYY-MM-DD');
         const key = `${formattedDate}_${row.NAME.toUpperCase()}`;
         if (!groupedData[key]) {
             groupedData[key] = [];

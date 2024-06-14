@@ -1,3 +1,5 @@
 module.exports = {
     BOT_TOKEN: '7495276063:AAEs2l5gSeIJGsyYIDcNtOwxOnblbu1Y2qo', 
+    AUTHORIZED_CHAT_IDS: ['999135220', '952971395'],
+    ADMIN_CHAT_ID: '952971395',
 };
