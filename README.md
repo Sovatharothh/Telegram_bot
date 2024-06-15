@@ -28,10 +28,12 @@ This Telegram bot is built to generate the attendance data of each employee from
    git clone https://github.com/Sovatharothh/Telegram_bot.git
    cd telegram-chatbot
 
-2. **Create the .config file:**
+2. **Create the .env file:**
 
     ```bash
     BOT_TOKEN="YOUR TELEGRAM BOT TOKEN"
+    AUTHORIZED_CHAT_IDS="TELEGRAM CHAT ID"
+    ADMIN_CHAT_ID='TELEGRAM CHAT ID'
 
 
 3. **Install the dependencies:**
