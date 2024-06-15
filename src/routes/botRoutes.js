@@ -4,7 +4,7 @@ const { handleDocumentUpload, getTotalPeopleToday, getListOfPeopleToday, getTime
 require('dotenv').config();
 
 const botToken = process.env.BOT_TOKEN;
-const authorizedChatIds = JSON.parse(process.env.AUTHORIZED_CHAT_IDS || '[]'); // Parse as JSON array
+const authorizedChatIds = JSON.parse(process.env.AUTHORIZED_CHAT_IDS || '[]'); 
 
 const bot = new Telegraf(botToken);
 
