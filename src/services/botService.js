@@ -7,7 +7,10 @@ const analyzeData = (dataArray) => {
     // Group scans by date and name
     const groupedData = {};
     dataArray.forEach(row => {
-        const formattedDate = moment(row.DATE, 'M/D/YYYY').format('YYYY-MM-DD');
+        const formattedDate = moment(row.DATE, ['M/D/YYYY', 'D/M/YYYY']).isValid() 
+                              ? moment(row.DATE, ['M/D/YYYY', 'D/M/YYYY']).format('YYYY-MM-DD')
+                              : 'Invalid date'; 
+        
         const key = `${formattedDate}_${row.NAME.toUpperCase()}`;
         if (!groupedData[key]) {
             groupedData[key] = [];
@@ -21,7 +24,7 @@ const analyzeData = (dataArray) => {
         const times = groupedData[key];
         
         // Use the first scan time as time-in
-        const timeIn = moment(times[0], 'HH:mm:ss').format('HH:mm:ss');
+        const timeIn = times.length > 0 ? moment(times[0], 'HH:mm:ss').format('HH:mm:ss') : 'N/A';
         
         // Determine time-out based on the number of scans
         let timeOut;

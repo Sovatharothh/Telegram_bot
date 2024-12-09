@@ -1,3 +1,4 @@
+// In models/storeData.js or wherever you define these functions
 let officeData = [];
 
 const setOfficeData = (data) => {
