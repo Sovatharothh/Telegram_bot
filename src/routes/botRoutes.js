@@ -15,15 +15,24 @@ bot.start((ctx) => {
     if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('🚫 Unauthorized access. Please contact the admin.');
     }
-    ctx.reply('🎉 Welcome to CDDE Attendance Bot!');
+    ctx.reply('🎉 Welcome to CDDE Attendance Bot!\nplease click /help to start');
 });
 
 bot.help((ctx) => {
     if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
         return ctx.reply('🚫 Unauthorized access. Please contact the admin.');
     }
-    ctx.reply('🔍 Available commands:\n\n📄 /document - Upload a CSV file\n📊 /total - Total number of people in office\n👩‍💻 /list - List of people in office\n⏰ /times - Time in and time out\n🛑 /stop - Stop the bot');
+    ctx.reply(
+        '🔍 *Available commands:*\n\n' +
+        '📄 /document \\- Upload a CSV file \\([Download Sample](https://drive.google.com/drive/folders/1H4kLNrkpXhs7t9DcUTjkVa2YKXT_Buhm?usp=sharing)\\)\n' +
+        '📊 /total \\- Total number of people in office\n' +
+        '👩‍💻 /list \\- List of people in office\n' +
+        '⏰ /times \\- Time in and time out\n' +
+        '🛑 /stop \\- Stop the bot',
+        { parse_mode: 'MarkdownV2' }
+    );
 });
+
 
 bot.on('document', async (ctx) => {
     if (!authorizedChatIdsSet.has(ctx.chat.id.toString())) {
