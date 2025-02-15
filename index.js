@@ -5,3 +5,4 @@ bot.launch().then(() => {
 }).catch((err) => {
     console.error('Bot launch error:', err);
 });
+

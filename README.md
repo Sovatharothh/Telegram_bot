@@ -1,6 +1,6 @@
 # Telegram Office Attendance Bot
 
-This Telegram bot is built to generate the attendance data of each employee from door scanning. It allows users to upload a CSV file containing date, time, and employee name. It also provides various commands to analyze and display the information.
+This Telegram bot is built to generate the attendance data of each employee from door scanning. It allows users to upload a CSV file containing date, time, and employee name. It also provides various commands to analyze and display the information. 
 
 
 ## Technologies Used
@@ -19,6 +19,7 @@ This Telegram bot is built to generate the attendance data of each employee from
   - `/list`: Lists the names of people who came to the office for the current day.
   - `/times`: Shows the time in and time out for each person who came to the office for the current day.
   - `/stop`: Stops the bot.
+
 
 ## Quick Start
 
@@ -43,4 +44,18 @@ This Telegram bot is built to generate the attendance data of each employee from
 4. **Run the API:**
     ```bash
     npm start
+
+## Try the Bot
+
+To try the bot, search for **[CDDE Attendance Bot](https://t.me/cdde_attendance_bot)** on Telegram or click the link below to start interacting with it:
+
+[Start the bot @cdde_attendance_bot](https://t.me/cdde_attendance_bot)
+
+Once you start the bot, you can use commands like:
+
+- `/help` - Get a list of available commands.
+- `/total` - Check the total number of people in the office today.
+- `/list` - See the list of people who came to the office today.
+- `/times` - View the time in and time out for people today.
+
 
